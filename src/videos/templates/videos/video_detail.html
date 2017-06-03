@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  <h1>Video Detail view</h1>
+  <h3>{{ object }}<h3>
+  <h3>{{ object.embed_code| safe }}
+  {% endblock content %}

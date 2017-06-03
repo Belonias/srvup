@@ -17,7 +17,10 @@ class VideoCreateView(CreateView):
 
 class VideoDetailView(DetailView):
     queryset = Video.objects.all()
-    pass
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(VideoDetailView, self).get_context_data(*args, **kwargs)
+        return context
 
 
 class VideoListView(ListView):
