@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video_detail'),
+    url(r'^videos/(?P<slug>[\w-]+)/$', VideoDetailView.as_view(), name='video_slug'),
     url(r'^videos/$', VideoListView.as_view(), name='video_list'),
 ]
