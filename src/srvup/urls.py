@@ -17,8 +17,10 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from videos.views import VideoListView
+from .views import home, HomeView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^videos/$', VideoListView.as_view(), name='video_list'),
 ]

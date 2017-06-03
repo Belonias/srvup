@@ -7,6 +7,7 @@ from django.views.generic import (
     DeleteView,
     )
 from .models import Video
+import random
 
 # Create your views here.
 class VideoCreateView(CreateView):
@@ -21,7 +22,12 @@ class VideoDetailView(DetailView):
 
 class VideoListView(ListView):
     queryset = Video.objects.all()
-    pass
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(VideoListView, self).get_context_data(*args, **kwargs)
+        print(context)
+        context['random'] = random.randint(1,500)
+        return context
 
 
 class VideoUpdateView(UpdateView):
