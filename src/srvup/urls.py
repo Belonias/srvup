@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from videos.views import VideoListView, VideoDetailView
+from videos.views import VideoListView, VideoDetailView, VideoCreateView
 from .views import home, HomeView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video_detail'),
+    url(r'^videos/create/$', VideoCreateView.as_view(), name='video_create'),
+    # url(r'^videos/(?P<pk>\d+)/$', VideoDetailView.as_view(), name='video_detail'),
     url(r'^videos/(?P<slug>[\w-]+)/$', VideoDetailView.as_view(), name='video_slug'),
     url(r'^videos/$', VideoListView.as_view(), name='video_list'),
 ]
