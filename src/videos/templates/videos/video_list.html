@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Video List Project{{ block.super }}{% endblock title %}
+{% block title %}Videos | {{ block.super }}{% endblock title %}
+
 
 {% block content %}
-    <h1>Hi, video list</h1>
-    <h1>Random number {{ random }}</h1>
-    <ul>
-      {% for video in object_list %}
-      <li>{{ video }}{{ video.timestamp }}</li>  {% endfor %}
+    <h1>Hi</h1>
+
+        {{ object_list }}
+
+        {{ random_number }}
+
+        <ul>
+        {% for item in object_list %}
+            <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+        {% endfor %}
     </ul>
 {% endblock content %}
