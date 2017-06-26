@@ -15,8 +15,9 @@ class Video(models.Model):
         return self.title
 
     def get_absolute_url(self):
+        slug = self.slug
         #return "/videos/{slug_arg}/".format(slug_arg=self.slug)
-        return reverse("video_slug", kwargs={"slug": self.slug})
+        return reverse('video_detail', kwargs={'slug': slug})
 
 def pre_save_video_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
