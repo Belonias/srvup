@@ -9,22 +9,18 @@ from django.views.generic import (
     )
 
 from .forms import VideoForm
+from .mixins import MemberRequiredMixin, StaffMemberRequiredMixin
 from .models import Video
 
 
-class VideoCreateView(CreateView):
+class VideoCreateView(StaffMemberRequiredMixin, CreateView):
     model = Video
     form_class = VideoForm
     #success_url = "/success/"
 
 
-class VideoDetailView(DetailView):
+class VideoDetailView(MemberRequiredMixin, DetailView):
     queryset = Video.objects.all()
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(VideoDetailView, self).get_context_data(*args, **kwargs)
-        print(context)
-        return context
 
 
 class VideoListView(ListView):
@@ -36,9 +32,6 @@ class VideoListView(ListView):
         if query:
             queryset = queryset.filter(title__icontains=query)
         return queryset
-
-    # def get_queryset(self):
-    #     return Video.objects.filter(title__icontains='vid') #.filter(user=self.request.user)
 
     def get_context_data(self, *args, **kwargs):
         context = super(VideoListView, self).get_context_data(*args, **kwargs)
