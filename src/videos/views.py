@@ -28,7 +28,14 @@ class VideoDetailView(DetailView):
 
 
 class VideoListView(ListView):
-    queryset = Video.objects.all() #.filter(title__icontains='vid')
+
+    def get_queryset(self):
+        request = self.request
+        queryset = Video.objects.all()
+        query = request.GET.get('q')
+        if query:
+            queryset = queryset.filter(title__icontains=query)
+        return queryset
 
     # def get_queryset(self):
     #     return Video.objects.filter(title__icontains='vid') #.filter(user=self.request.user)
